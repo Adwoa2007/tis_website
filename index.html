@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Takoradi International School</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- ICONSCOUT CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- GOOGLE FONTS MONTSERRAT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- START OF NAVIGATION BAR -->
+    <nav>
+        <div class="container nav__container">
+            <a href="index.html"><img src="img/logo.svg" alt="TIS Logo" class="logo"></a>
+            <a href="index.html">
+                <h4>Takoradi International School</h4>
+            </a>
+            <ul class="nav__menu">
+                <li class="nav-link"><a href="index.html">Home</a></li>
+                <li class="dropdown"><a href="about.html">About</a>
+                    <div class="dropdown-content">
+                        <a href="about.html">About Our School</a>
+                        <a href="#">Core Values</a>
+                        <a href="#">Meet Our Staff</a>
+                    </div>
+                </li>
+                <li class="dropdown">Academics
+                    <div class="dropdown-content">
+                        <a href="#">Primary School</a>
+                        <a href="#">Lower Secondary</a>
+                        <a href="#">Upper Secondary</a>
+                        <a href="#">Extracurricular Activities</a>
+                    </div>
+                </li>
+                <li class="dropdown">Publications
+                    <div class="dropdown-content">
+                        <a href="#">School Calendar</a>
+                        <a href="#">Publications</a>
+                        <a href="#">Facilities</a>
+                        <a href="#">Gallery</a>
+                    </div>
+                </li>
+                <li class="nav-link"><a href="admissions.html">Admissions</a></li>
+    
+                <li class="nav-link"><a href="contact.html">Contact Us</a></li>
+    
+            </ul>
+            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+    
+    
+        </div>
+    </nav>
+    <!-- END OF NAVIGATION BAR -->
+
+    <!-- START OF SLIDESHOW -->
+    <header>
+        <section class="slideshow">
+            <div class="slider">
+                <div class="slide active">
+                    <img src="img/1.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/2.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/3.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/4.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/5.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/6.jpg" alt="">
+                </div>
+                <div class="navigation">
+                    <i class="fas fa-chevron-left prev-btn"></i>
+                    <i class="fas fa-chevron-right next-btn"></i>
+                </div>
+                <div class="navigation-visibility">
+                    <div class="slide-icon active"></div>
+                    <div class="slide-icon"></div>
+                    <div class="slide-icon"></div>
+                    <div class="slide-icon"></div>
+                    <div class="slide-icon"></div>
+                    <div class="slide-icon"></div>
+                </div>
+                <script type="text/javascript">
+                    const prevBtn = document.querySelector(".prev-btn");
+                    const nextBtn = document.querySelector(".next-btn");
+                    const slides = document.querySelectorAll(".slide");
+                    const slideIcons = document.querySelectorAll(".slide-icon");
+                    const numberOfSlides = slides.length;
+                    var slideNumber = 0;
+
+                    //image slider next button
+                    nextBtn.addEventListener("click", () => {
+                        slides.forEach((slide) => {
+                            slide.classList.remove("active");
+                        });
+                        slideIcons.forEach((slideIcon) => {
+                            slideIcon.classList.remove("active");
+                        });
+
+                        slideNumber++;
+
+                        if (slideNumber > (numberOfSlides - 1)) {
+                            slideNumber = 0;
+                        }
+
+                        slides[slideNumber].classList.add("active");
+                        slideIcons[slideNumber].classList.add("active");
+                    });
+
+                    //image slider previous button
+                    prevBtn.addEventListener("click", () => {
+                        slides.forEach((slide) => {
+                            slide.classList.remove("active");
+                        });
+                        slideIcons.forEach((slideIcon) => {
+                            slideIcon.classList.remove("active");
+                        });
+
+                        slideNumber--;
+
+                        if (slideNumber < 0) {
+                            slideNumber = numberOfSlides - 1;
+                        }
+
+                        slides[slideNumber].classList.add("active");
+                        slideIcons[slideNumber].classList.add("active");
+                    });
+
+                    //image slider autoplay
+                    var playSlider;
+
+                    var repeater = () => {
+                        playSlider = setInterval(function () {
+                            slides.forEach((slide) => {
+                                slide.classList.remove("active");
+                            });
+                            slideIcons.forEach((slideIcon) => {
+                                slideIcon.classList.remove("active");
+                            });
+
+                            slideNumber++;
+
+                            if (slideNumber > (numberOfSlides - 1)) {
+                                slideNumber = 0;
+                            }
+
+                            slides[slideNumber].classList.add("active");
+                            slideIcons[slideNumber].classList.add("active");
+                        }, 5000);
+                    }
+                    repeater();
+
+                    //stop the image slider autoplay on mouseover
+                    slider.addEventListener("mouseover", () => {
+                        clearInterval(playSlider);
+                    });
+
+                    //start the image slider autoplay again on mouseout
+                    slider.addEventListener("mouseout", () => {
+                        repeater();
+                    });
+
+                </script>
+        </section>
+    </header>
+
+    <!-- END OF SLIDESHOW -->
+
+    <!-- START OF WELCOME MESSAGE -->
+    <section class="welcome">
+        <h1 style="text-align:center;" class="welcome__text">WELCOME</h1>
+        <p class="container welcome__message">We warmly welcome you to Takoradi International School where, following the British Curriculum, we aim to provide a high
+        level of education, at an international standard, to boys and girls of all ethnic, cultural, national and religious
+        backgrounds; ushering them into higher educational institutions the world over.</p>
+        <div class="container welcome__container">
+            
+            <div class="welcome__left">
+                <img src="img/headteacher.png" alt="Head Teacher Image" style="border-radius: 5px;">
+                
+            </div>
+            <div class="welcome__right">
+                <h2>Head Teacher's Message</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique itaque, dolorum repellat corporis quas nisi neque voluptatum voluptatem id ab excepturi quia architecto tenetur libero eius eos. Voluptates, consectetur eaque?</p>
+            </div>
+        </div>
+    </section>
+    <!-- END OF WELCOME MESSAGE -->
+
+    <!-- START OF FOOTER -->
+    <footer>
+        <div class="container footer__container">
+            <div class="footer__1">
+                <a href="index.html" class="footer_logo">
+                    <h4>Takoradi International School</h4>
+                </a>
+                <p>Unity in Diversity</p>
+            </div>
+            <div class="footer__2">
+                <h4>Contact Us</h4>
+                <div>
+                    <p>+233 31 709 0621</p>
+                    <p>something@something.com</p>
+                </div>
+                <ul class="footer__socials">
+                    <li><a href="#"><i class="uil uil-instagram"></i></a></li>
+                </ul>
+            </div> 
+        </div>
+        <div class="footer__copyright">
+            <small>Copyright &copy; Takoradi International School</small>
+        </div>
+    </footer>
+    <!-- END OF FOOTER -->
+
+    <!-- Back to Top Icon-->
+   
+
+    <button onClick="scrollToTop()" class="back-to-top">
+        &#8679;
+    </button>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>
